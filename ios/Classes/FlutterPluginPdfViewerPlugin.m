@@ -63,6 +63,7 @@ static NSString* kFileName = @"";
     kFileName = [[NSUUID UUID] UUIDString];
     NSLog(@"[FlutterPluginPdfViewer] File has %zd pages", numberOfPages);
     NSLog(@"[FlutterPluginPdfViewer] File will be saved in cache as %@", kFileName);
+    CGPDFDocumentRelease(SourcePDFDocument);
     return [NSString stringWithFormat:@"%zd", numberOfPages];
 }
 
@@ -120,6 +121,8 @@ static NSString* kFileName = @"";
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     [UIImagePNGRepresentation(image) writeToFile: imageFilePath atomically:YES];
+    CGPDFPageRelease(SourcePDFPage);
+    CGPDFDocumentRelease(SourcePDFDocument);
     return imageFilePath;
 }
 
