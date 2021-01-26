@@ -129,7 +129,8 @@ public class FlutterPluginPdfViewerPlugin implements MethodCallHandler {
             double height = instance.activity().getResources().getDisplayMetrics().densityDpi * page.getHeight();
             final double docRatio = width / height;
 
-            width = 2048;
+            //width = 2048;
+            width = 1024;
             height = (int) (width / docRatio);
             Bitmap bitmap = Bitmap.createBitmap((int) width, (int) height, Bitmap.Config.ARGB_8888);
             // Change background to white
